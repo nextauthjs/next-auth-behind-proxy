@@ -19,7 +19,7 @@
   ],
   "dependencies": {
     "next": "latest",
-    "next-auth": "latest",
+    "next-auth": "^4.20.1",
     "nodemailer": "^6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
