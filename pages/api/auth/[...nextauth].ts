@@ -13,4 +13,8 @@ export const authOptions: NextAuthOptions = {
   ],
 }
 
-export default NextAuth(authOptions)
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  const nextAuthResponse = NextAuth(req, res, authOptions)
+  console.log({ nextAuthResponse })
+  return nextAuthResponse
+}
