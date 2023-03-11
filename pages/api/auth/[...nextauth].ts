@@ -13,8 +13,8 @@ export const authOptions: NextAuthOptions = {
   ],
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const nextAuthResponse = NextAuth(req, res, authOptions)
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const nextAuthResponse = await NextAuth(req, res, authOptions)
   console.log({ nextAuthResponse })
   return nextAuthResponse
 }
