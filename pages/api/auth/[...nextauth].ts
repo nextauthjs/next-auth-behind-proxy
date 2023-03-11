@@ -1,6 +1,11 @@
 import NextAuth, { NextAuthOptions } from "next-auth"
 import GithubProvider from "next-auth/providers/github"
-import {defaultCallbacks} from 'next-auth/core/lib/default-callbacks'
+
+const defaultRedirectUrl = ({ url, baseUrl }: { url: string; baseUrl: string }) => {
+  if (url.startsWith("/")) return `${baseUrl}${url}`
+  else if (new URL(url).origin === baseUrl) return url
+  return baseUrl
+}
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
@@ -13,7 +18,7 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async redirect(params) {
-      const defaultRedirect = await defaultCallbacks.redirect(params)
+      const defaultRedirect = await defaultRedirectUrl(params)
 
       const url = new URL(defaultRedirect);
 
