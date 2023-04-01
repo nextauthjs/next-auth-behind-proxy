@@ -1,9 +1,12 @@
 import { useRouter } from "next/router";
 import Layout from "../components/layout"
+import { useEffect } from 'react';
 
 export default function IndexPage() {
   const router = useRouter();
-  if (router.query.code && router.query.state) router.replace('/', undefined, { shallow: true });
+  useEffect(() => {
+    if (router.query.code && router.query.state) router.replace('/', undefined, { shallow: true });
+  }, [router.query])
   return (
     <Layout>
       <h1>NextAuth.js Behind a proxy example</h1>
